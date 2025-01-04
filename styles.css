@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: "Poppins", serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+    outline: none;
+}
+
+:root {
+    --bg-color: #1f242d;
+    --second-bg-color: #323946;
+    --main-color: #7cf03d;
+    --white-color: #fff;
+    --disabled-color: #fff3;
+}
+
+html {
+    font-size: 62.5% !important;
+    scroll-behavior: smooth;
+}
+
+body {
+    color: var(--white-color);
+}
+
+header {
+    position: fixed;
+    inset: 0 auto auto 0;
+    padding: 2rem 10%;
+    background-color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 42;
+    width: 100%;
+}
+
+.logo {
+    font-size: 3rem;
+    color: var(--white-color);
+    font-weight: 700;
+}
+
+nav a {
+    font-size: 1.9rem;
+    color: var(--white-color);
+    font-weight: 500;
+    letter-spacing: normal;
+    margin-left: 3.5rem;
+    transition: all 0.25s ease;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--main-color);
+}
+
+#menu-icon {
+    font-size: 3rem;
+    display: none;
+}
+
+section {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 10rem 10% 2rem;
+    background: var(--bg-color);
+    visibility: hidden;
+    opacity: 0;
+    overflow: hidden;
+}
+
+section.active {
+    visibility: visible;
+    opacity: 1;
+    overflow: auto;
+}
+
+.home {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+}
+
+.home_details h1 {
+    font-size: clamp(3.5rem, 10vw, 5.5rem);
+}
+
+.home_details h2 {
+    display: inline-block;
+    font-size: 3.3rem;
+    margin-top: -1rem;
+}
+
+.home_details h2 span {
+    position: relative;
+    display: inline-block;
+    color: transparent;
+    letter-spacing: 3px;
+    font-size: 4rem;
+    -webkit-text-stroke: 0.1rem var(--main-color);
+    animation: display-text 20s linear infinite;
+    animation-delay: calc(-5s * var(--i));
+}
+
+@keyframes display-text {
+    25%,
+    100% {
+        display: none;
+    }
+}
+
+.home_details h2 span::before {
+    content: attr(data-text);
+    position: absolute;
+    width: 0;
+    border-right: 0.2rem solid var(--main-color);
+    color: var(--main-color);
+    white-space: nowrap;
+    overflow: hidden;
+    animation: fill-text 5s linear infinite;
+}
+
+@keyframes fill-text {
+    10%,
+    100% {
+        width: 0;
+    }
+
+    70%,
+    90% {
+        width: 100%;
+    }
+}
+
+.home_details p {
+    font-size: 1.6rem;
+    margin: 1rem 0 2.5rem;
+}
+
+.home_details .btn_socails {
+    display: flex;
+    align-items: center;
+}
+
+.home_details .btn_socails .btn {
+    display: inline-block;
+    padding: 1rem 3rem;
+    background: var(--main-color);
+    border: 00.2rem solid var(--main-color);
+    border-radius: 4rem;
+    box-shadow: 0px 0px 1rem var(--main-color);
+    font-size: 1.6rem;
+    color: var(--bg-color);
+    font-weight: 500;
+    transition: all 0.5s ease;
+}
+
+.home_details .btn_socails .btn:hover {
+    background-color: transparent;
+    color: var(--main-color);
+    box-shadow: none;
+}
+
+.home_details .btn_socails .socails {
+    margin-left: 2rem;
+}
+
+.home_details .btn_socails .socails a {
+    display: inline-flex;
+    padding: 0.8rem;
+    border: 0.2rem solid var(--main-color);
+    border-radius: 50%;
+    font-size: 2rem;
+    color: var(--main-color);
+    margin: 0 0.8rem;
+    transition: all 0.4s ease;
+}
+
+.home_details .btn_socails .socails a:hover {
+    background-color: var(--main-color);
+    color: var(--bg-color);
+    box-shadow: 0 0 1rem var(--main-color);
+}
+
+.home_img .img_box {
+    position: relative;
+    width: 32vw;
+    height: 64vh;
+    border-radius: 50%;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.home_img .img_box::before,
+.home_img .img_box::after {
+    content: '';
+    position: absolute;
+    width: 55rem;
+    height: 55rem;
+    background: conic-gradient(transparent, transparent, transparent, var(--main-color));
+    transform: rotate(0deg);
+    animation: rotate-border 5s linear infinite;
+}
+
+.home_img .img_box::after {
+    animation-delay: -2.5s;
+}
+
+@keyframes rotate-border {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.home_img .img_box .img_item {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    overflow: hidden;
+    border: 0.01rem solid var(--bg-color);
+}
+
+.home_img .img_box .img_item img {
+    position: absolute;
+    top: 3rem;
+    display: block;
+    width: 85%;
+    object-fit: cover;
+    mix-blend-mode: lighten;
+}
+
+.heading{
+    font-size: 4.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.heading span, .logo span{
+    color: var(--main-color);
+}
+
+.services_container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
+    gap: 2rem;
+}
+
+.services_container .services_box{
+    padding: 3rem 2.5rem;
+    background: var(--second-bg-color);
+    border: 0.2rem solid var(--second-bg-color);
+    border-radius: 1rem;
+    transition: all 0.5s ease;
+}
+
+.services_container .services_box:hover{
+    border-color: var(--main-color);
+    transform: scale(1.02);
+}
+
+.services_box .icon{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.services_box .icon i{
+    font-size: 4rem;
+    transition: 0.5s;
+}
+
+.services_box:hover .icon :not(a i){
+    color: var(--main-color);
+}
+
+.services_box .icon a{
+    display: inline-flex;
+    background: var(--white-color);
+    border-radius: 50%;
+    padding: 0.5rem;
+    transition: 0.5s;
+}
+
+.services_box:hover .icon a{
+    background: var(--main-color);
+}
+
+.services_box .icon a i{
+    font-size: 3rem;
+    color: var(--bg-color);
+    transform: rotate(225deg);
+}
+
+.services_box h3{
+    font-size: 3rem;
+    margin: 0.5rem 0 2rem;
+}
+
+.services_box:hover h3{
+    color: var(--main-color);
+}
+
+.services_box p{
+    font-size: 1.6rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
