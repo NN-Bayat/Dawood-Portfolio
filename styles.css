@@ -37,6 +37,20 @@ header {
     justify-content: space-between;
     z-index: 42;
     width: 100%;
+    visibility: hidden;
+    opacity: 0;
+}
+
+header.active{
+    animation: show-header 1.5s linear forwards;
+    animation-delay: 1.2s;
+}
+
+@keyframes show-header{
+    100%{
+        visibility: visible;
+        opacity: 1;
+    }
 }
 
 .logo {
@@ -47,7 +61,7 @@ header {
     transform-origin: center left;
 }
 
-.logo:hover{
+.logo:hover {
     transform: scale(1.1);
 }
 
@@ -67,7 +81,7 @@ nav a.active {
     color: var(--main-color);
 }
 
-nav a.active{
+nav a.active {
     border-bottom: 3px solid;
 }
 
@@ -93,21 +107,65 @@ nav a:hover::before {
     display: none;
 }
 
+.bars_box {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.bars_box .bar {
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    animation: hide-bars 0.5s ease-in-out both;
+    animation-delay: calc(0.1s * var(--i));
+}
+
+@keyframes hide-bars{
+    0%{
+        transform: translateY(0);
+    }
+    100%{
+        transform: translateY(-100%);
+    }
+}
+
+.bars_box.active .bar {
+    animation: show-bars 0.5s ease-in-out both;
+    animation-delay: calc(0.1s * var(--i));
+}
+
+@keyframes show-bars{
+    0%{
+        transform: translateY(-100%);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+
 section {
     position: absolute;
     width: 100%;
     height: 100%;
     padding: 10rem 10% 2rem;
-    background: var(--bg-color);
     visibility: hidden;
     opacity: 0;
     overflow: hidden;
 }
 
 section.active {
-    visibility: visible;
+    animation: show-content 1.5s linear forwards;
+    animation-delay: 1.6s;
+}
+
+@keyframes show-content{
+    100%{
+      visibility: visible;
     opacity: 1;
-    overflow: auto;
+    overflow: auto;  
+    }
 }
 
 .home {
@@ -179,7 +237,7 @@ section.active {
     align-items: center;
 }
 
-.home_details .btn_socails .btn {
+.btn {
     display: inline-block;
     padding: 1rem 3rem;
     background: var(--main-color);
@@ -190,9 +248,10 @@ section.active {
     color: var(--bg-color);
     font-weight: 500;
     transition: all 0.5s ease;
+    cursor: pointer;
 }
 
-.home_details .btn_socails .btn:hover {
+.btn:hover {
     background-color: transparent;
     color: var(--main-color);
     box-shadow: none;
@@ -548,23 +607,23 @@ section.active {
     line-height: 1;
 }
 
-.portfolio_box h3{
+.portfolio_box h3 {
     font-size: 3.5rem;
     margin: 0.8rem 0 2rem;
 }
 
-.portfolio_box p{
+.portfolio_box p {
     font-size: 1.6rem;
 }
 
-.portfolio_box .tech{
+.portfolio_box .tech {
     margin: 2rem 0;
     color: var(--main-color);
     border-bottom: 0.1rem solid var(--white-color);
     padding-bottom: 2rem;
 }
 
-.portfolio_box .live_github a{
+.portfolio_box .live_github a {
     position: relative;
     display: inline-flex;
     padding: 1.3rem;
@@ -575,23 +634,23 @@ section.active {
     transition: 0.4s;
 }
 
-.portfolio_box .live_github a:hover{
+.portfolio_box .live_github a:hover {
     color: var(--main-color);
 }
 
-.portfolio_box .live_github a:first-child{
+.portfolio_box .live_github a:first-child {
     margin-right: 1.5rem;
 }
 
-.portfolio_box .live_github a:first-child i{
+.portfolio_box .live_github a:first-child i {
     transform: rotate(135deg);
 }
 
-.portfolio_box .live_github a span{
+.portfolio_box .live_github a span {
     position: absolute;
     top: -60%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) scale(0.9);
     font-size: 1.6rem;
     white-space: nowrap;
     padding: 0.5rem 1rem;
@@ -600,17 +659,152 @@ section.active {
     background: var(--white-color);
     color: var(--bg-color);
     opacity: 0;
-    scale: 0.9;
     transition: 0.2s;
 }
 
-.portfolio_box .live_github a:hover span{
+.portfolio_box .live_github a:hover span {
     top: -70%;
     opacity: 1;
-    scale: 1;
+    transform: translateX(-50%) scale(1);
 }
 
+.portfolio_box .portfolio_carousel {
+    width: 100%;
+    height: 45rem;
+    border-radius: 1rem;
+    overflow: hidden;
+}
 
+.portfolio_carousel .img_slide {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 100%;
+    gap: 2rem;
+    height: inherit;
+    transition: 0.5s;
+}
+
+.portfolio_carousel .img_item {
+    height: inherit;
+}
+
+.portfolio_carousel .img_item img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.portfolio_box .navigation {
+    text-align: left;
+    margin-top: 2rem;
+}
+
+.portfolio_box .navigation button {
+    display: inline-flex;
+    padding: 0.4rem;
+    background: var(--second-bg-color);
+    border: 0.2rem solid var(--main-color);
+    border-radius: 0.6rem;
+    font-size: 4rem;
+    color: var(--main-color);
+    cursor: pointer;
+}
+
+.portfolio_box .navigation button.disabled {
+    border-color: var(--second-bg-color);
+    color: var(--disabled-color);
+}
+
+.portfolio_box .navigation .arrow_right {
+    margin-left: 1.5rem;
+}
+
+.contact_container {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 3rem;
+}
+
+.contact_container .contact_box:first-child {
+    align-self: center;
+}
+
+.contact_box h2 {
+    font-size: 4.5rem;
+}
+
+.contact_box p {
+    font-size: 1.6rem;
+}
+
+.contact_box .desc_ {
+    margin: 1.5rem 0 2.5rm;
+}
+
+.contact_box .contact_detail {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.contact_detail i {
+    display: inline-flex;
+    background: var(--second-bg-color);
+    color: var(--main-color);
+    font-size: 3rem;
+    padding: 1.2rem;
+    border-radius: 0.6rem;
+    margin-right: 1.5rem;
+}
+
+.contact_detail .detail p:first-child {
+    color: var(--main-color);
+    letter-spacing: normal;
+}
+
+.contact_box form {
+    background: var(--second-bg-color);
+    padding: 2.5rem 3.5rem 3.5rem;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.contact_box .heading {
+    font-size: 3.5rem;
+}
+
+.contact_box .field_box {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.contact_box .field_box input,
+.contact_box .field_box textarea {
+    padding: 1.5rem;
+    background: var(--bg-color);
+    border: 0.15rem solid var(--bg-color);
+    border-radius: 0.6rem;
+    font-size: 1.6rem;
+    color: var(--white-color);
+}
+
+.contact_box .field_box textarea {
+    grid-column: 1 / -1;
+    height: 25rem;
+    resize: none;
+}
+
+.contact_box .field_box input:focus,
+.contact_box .field_box textarea:focus {
+    border-color: var(--main-color);
+}
+
+.contact_box .btn {
+    margin-top: 2rem;
+}
 
 
 
