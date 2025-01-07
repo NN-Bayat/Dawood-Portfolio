@@ -19,7 +19,7 @@
 }
 
 html {
-    font-size: 62.5% !important;
+    font-size: 62.5%;
     scroll-behavior: smooth;
 }
 
@@ -41,13 +41,13 @@ header {
     opacity: 0;
 }
 
-header.active{
+header.active {
     animation: show-header 1.5s linear forwards;
     animation-delay: 1.2s;
 }
 
-@keyframes show-header{
-    100%{
+@keyframes show-header {
+    100% {
         visibility: visible;
         opacity: 1;
     }
@@ -103,7 +103,7 @@ nav a:hover::before {
 
 
 #menu-icon {
-    font-size: 3rem;
+    font-size: 4rem;
     display: none;
 }
 
@@ -122,11 +122,12 @@ nav a:hover::before {
     animation-delay: calc(0.1s * var(--i));
 }
 
-@keyframes hide-bars{
-    0%{
+@keyframes hide-bars {
+    0% {
         transform: translateY(0);
     }
-    100%{
+
+    100% {
         transform: translateY(-100%);
     }
 }
@@ -136,11 +137,12 @@ nav a:hover::before {
     animation-delay: calc(0.1s * var(--i));
 }
 
-@keyframes show-bars{
-    0%{
+@keyframes show-bars {
+    0% {
         transform: translateY(-100%);
     }
-    100%{
+
+    100% {
         transform: translateY(0);
     }
 }
@@ -160,11 +162,11 @@ section.active {
     animation-delay: 1.6s;
 }
 
-@keyframes show-content{
-    100%{
-      visibility: visible;
-    opacity: 1;
-    overflow: auto;  
+@keyframes show-content {
+    100% {
+        visibility: visible;
+        opacity: 1;
+        overflow: auto;
     }
 }
 
@@ -281,7 +283,7 @@ section.active {
 .home_img .img_box {
     position: relative;
     width: 32vw;
-    height: 64vh;
+    height: 32vw;
     border-radius: 50%;
     padding: 0.5rem;
     display: flex;
@@ -340,7 +342,8 @@ section.active {
 }
 
 .heading span,
-.logo span {
+.logo span,
+.home_details h1 span {
     color: var(--main-color);
 }
 
@@ -804,6 +807,143 @@ section.active {
 
 .contact_box .btn {
     margin-top: 2rem;
+}
+
+/* ----responsive-Design---- */
+
+@media(max-width:1200px) {
+    html {
+        font-size: 55%;
+    }
+}
+
+@media(max-width:992px) {
+    header {
+        padding: 2rem 4%;
+    }
+
+    section {
+        padding: 10rem 4% 2rem;
+    }
+
+    /* ------------------------------------------ */
+    .home_img .img_box {
+        width: 47rem;
+        height: 47rem;
+    }
+}
+
+@media(max-width:850px) {
+    .contact_box .field_box {
+        grid-template-columns: 1fr;
+    }
+
+    html {
+        font-size: 50%;
+    }
+
+}
+
+@media(max-width:768px) {
+    nav a.active {
+        border-bottom: unset;
+    }
+
+    #menu-icon {
+        display: block;
+    }
+
+    nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem 0;
+        background: var(--bg-color);
+        border-top: .1rem solid rgba(0, 0, 0, 0.2);
+        box-shadow: 0rem 1rem 2rem rgba(0, 0, 0, 0.2);
+        text-align: center;
+        border-bottom: 3px solid var(--main-color);
+        border-bottom-right-radius: 2rem;
+        border-bottom-left-radius: 2rem;
+        display: none;
+    }
+
+    nav.active {
+        display: block;
+    }
+
+    nav a {
+        display: block;
+        margin: 4rem 0;
+    }
+
+    .home {
+        flex-direction: column-reverse;
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    .home_img .img_box {
+        width: 35rem;
+        height: 35rem;
+    }
+
+    .resume_container,
+    .portfolio_container,
+    .contact_container {
+        grid-template-columns: 1fr;
+    }
+
+    .resume_container {
+        gap: 3rem;
+    }
+
+    .resume_list {
+        padding-right: 1rem;
+    }
+
+    .portfolio_container .portfolio_box:first-child {
+        order: 1;
+    }
+
+    .contact_box .field_box {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width:480px) {
+    html {
+        font-size: 45%;
+    }
+
+    .contact_box .field_box {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width:400px) {
+
+    .home_details,
+    .resume_box h2,
+    .resume_box .heading,
+    .resume_box .desc_,
+    .resume_detail.about .resume_item {
+        text-align: center;
+    }
+
+    .home_details .btn_socails {
+        flex-direction: column-reverse;
+    }
+
+    .home_details .btn_socails .socails {
+        margin-left: 0;
+        margin-bottom: 2rem;
+    }
+
+    .contact_box form {
+        padding: 2.5rem 2.5rem 3.5rem;
+    }
 }
 
 
